@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ExamPrepper</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script defer src="{{ url_for('static', filename='youtube_summarizer.js') }}"></script>
+</head>
+<style>
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+  font-family: "Inter", sans-serif;
+  color: #1e1e1e;
+}
+
+.dark-mode {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+/* Page title */
+.container h1 {
+  color: #fefefe;
+  text-align: center;
+}
+
+header{
+  border-radius: 8px;
+}
+
+/* Two-column layout */
+.video-summary-section {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Left pane: YouTube video */
+.left-pane {
+  flex: 1 1 50%;
+}
+
+.left-pane iframe {
+  width: 100%;
+  height: 500px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Right pane layout: Summary + Inputs */
+.right-pane {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+/* Summary Output Section (top half of right pane) */
+.summary-box {
+  flex: 1;
+  background: #F2F2FF;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1px solid #dcdcf0;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-height: 240px;
+  overflow-y: auto;
+  resize: none;
+}
+
+/* Input + Button Section (bottom half of right pane) */
+.input-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.input-controls label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.summary-box label{
+  color: #747272;
+}
+
+.input-controls input[type="text"],
+.input-controls input[type="number"] {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccccf5;
+  outline: none;
+  width: 100%;
+  transition: 0.2s ease;
+}
+
+.input-controls input:focus {
+  border-color: #5350C4;
+  box-shadow: 0 0 0 2px rgba(83, 80, 196, 0.15);
+}
+
+#summarize-btn {
+  padding: 12px 20px;
+  background: #5350C4;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+#summarize-btn:hover {
+  background-color: #3d39ac;
+}
+
+/* Responsive handling */
+@media (max-width: 900px) {
+  .video-summary-section {
+    flex-direction: column;
+  }
+
+  .left-pane,
+  .right-pane {
+    flex: 1 1 100%;
+  }
+
+  .container {
+    padding: 30px 20px;
+  }
+}
+
+/* Dark mode enhancements */
+.dark-mode .summary-box,
+.dark-mode .input-controls input {
+  background-color: #2a2a2a;
+  color: white;
+  border: 1px solid #444;
+}
+
+.dark-mode #summarize-btn {
+  background: #6e6bf1;
+}
+</style>
+<body>
+<div class="container">
+
+  <header>
+  <h1>YouTube Transcript Summarizer</h1>
+  </header>
+
+  <div class="video-summary-section">
+    
+    <!-- Left: Video -->
+    <div class="left-pane">
+      <iframe id="youtube-video" allowfullscreen></iframe>
+    </div>
+
+    <!-- Right: Summary + Inputs -->
+    <div class="right-pane">
+      
+      <!-- Top: Summary -->
+      <div id="summary-result" class="summary-box">
+        <label for="summary">Summary is shown here...</label>
+      </div>
+
+      <!-- Bottom: Inputs -->
+      <div class="input-controls">
+        <div>
+          <label for="language">Language:</label>
+          <input type="text" id="language" placeholder="Enter language here">
+        </div>
+        <div>
+          <label for="length">Summary Length (words):</label>
+          <input type="number" id="length" placeholder="50">
+        </div>
+        <input type="text" id="youtube-link" placeholder="Paste YouTube Link Here">
+        <button id="summarize-btn">Summarize</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

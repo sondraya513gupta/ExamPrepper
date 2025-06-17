@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ExamPrepper</title>
+  <link rel="stylesheet" href="/static/login.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2 id="formTitle">Sign In</h2>
+
+    <form id="authForm">
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      <button type="submit" id="authBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+    </form>
+
+    <!-- <button id="googleLoginBtn"><i class="fab fa-google"></i> Sign in with Google</button> -->
+
+    <p>
+      <span id="toggleText">Don't have an account?</span>
+      <a href="#" id="toggleLink">Sign Up</a>
+    </p>
+
+    <p id="userInfo"></p>
+  </div>
+
+  <script type="module" src="/static/login.js"></script>
+</body>
+</html>
